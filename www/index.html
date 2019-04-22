@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
     <head>
         <meta charset="utf-8">
-        <title>Smart Home App</title>
+        <title>Smart Home</title>
         <script src="./js/createjs_1.1_min.js"></script>
         <script src="./js/zim_10.js"></script>
         <script>
@@ -68,6 +68,7 @@
             for (var i=0; i<backyardArray.length; i++) {
                 backyardArray[i].tap(function (e) {
                     if (e.target.alpha == 1) {
+                        e.target.animate({props:{scale:0.25}, time:500, loop:true, loopCount:2, rewind:true});
                         e.target.alpha = 0.25;
                         stage.update();
                     } else {
@@ -111,6 +112,7 @@
             for (var i=0; i<basementArray.length; i++) {
                 basementArray[i].tap(function (e) {
                     if (e.target.alpha == 1) {
+                        e.target.animate({props:{scale:0.25}, time:500, loop:true, loopCount:2, rewind:true});
                         e.target.alpha = 0.25;
                         stage.update();
                     } else {
@@ -129,9 +131,9 @@
             // RESPONSIVE
             const factor = 800;
             const marginX = 0.25;
-            const spacingX = 0.3;
+            const spacingX = 0.4;
             const marginY = 0.25;
-            const spacingY = 0.13;
+            const spacingY = 0.1;
 
             frame.on("resize", () => {
                 stageW = frame.width;

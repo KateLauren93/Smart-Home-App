@@ -3,10 +3,10 @@
 <widget xmlns     = "http://www.w3.org/ns/widgets"
         xmlns:gap = "http://phonegap.com/ns/1.0"
         id        = "com.sheridan.immcollective"
-        version   = "1.0.4">
+        version   = "1.0.6">
 
     <name>
-        Smart Home App
+        Smart Home
     </name>
 
     <description>
