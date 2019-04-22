@@ -9,7 +9,7 @@
 
         const color = light;
         const outerColor = dark;
-        const assets = ["christmas-lights.png", "fan.png", "light-bulb.png", "pool.png", "backyard.png", "basement.png"];
+        const assets = ["christmas-lights.png", "fan.png", "light-bulb.png", "pool.png", "stereo.png", "volume-up.png", "volume-down.png", "chandelier.png", "backyard.png", "basement.png", "dining.png"];
         const path = "assets/";
 
         // ZIM way of doing CSS styling
@@ -37,32 +37,36 @@
             const christmasLights = frame.asset("christmas-lights.png");
             const lightBulb = frame.asset("light-bulb.png");
             const fan = frame.asset("fan.png");
+            const stereo = frame.asset("stereo.png");
+            const volumeUp = frame.asset("volume-up.png");
+            const volumeDown = frame.asset("volume-down.png");
+            const chandelier = frame.asset("chandelier.png");
 
             // BACKYARD
             const backyard = new Container(stageW, stageH);
-            // const backyardBack = new Rectangle(stageW, stageH, green).addTo(backyard);
+            // const backyardBack = new Rectangle(stageW, stageH, blue).addTo(backyard);
             const backyardBack = frame.asset("backyard.png").addTo(backyard);
             const backyardTitle = new Label("Backyard", null, null, white).addTo(backyard).pos(50, 50);
 
             const yardLights = christmasLights.clone().centerReg(backyard).sca(0.15).expand();
             yardLights.id = "48003";
-            const labelYardLights = new Label("Yard Lights", null, null, white).centerReg(backyard);
+            const label01 = new Label("Yard Lights", null, null, white).centerReg(backyard);
 
             const poolHouseFanLight = lightBulb.clone().centerReg(backyard).sca(0.15).expand();
             poolHouseFanLight.id = "05 15 92 1";
-            const labelPoolHouseFanLight = new Label("Fan Light", null, null, white).centerReg(backyard);
+            const label02 = new Label("Fan Light", null, null, white).centerReg(backyard);
 
             const poolHouseFan = fan.clone().centerReg(backyard).sca(0.15).expand();
             poolHouseFan.id = "4090";
-            const labelPoolHouseFan = new Label("Fan", null, null, white).centerReg(backyard);
+            const label03 = new Label("Fan", null, null, white).centerReg(backyard);
 
             const poolHouseLight = lightBulb.clone().centerReg(backyard).sca(0.15).expand();
             poolHouseLight.id = "05 15 D7 1";
-            const labelPoolHouseLight = new Label("Pool House Lights", null, null, white).centerReg(backyard);
+            const label04 = new Label("Pool House Lights", null, null, white).centerReg(backyard);
 
             const poolLight = frame.asset("pool.png").centerReg(backyard).sca(0.15).expand();
             poolLight.id = "10063";
-            const labelPoolLight = new Label("Pool Lights", null, null, white).centerReg(backyard);
+            const label05 = new Label("Pool Lights", null, null, white).centerReg(backyard);
 
             const backyardArray = [yardLights, poolHouseFanLight, poolHouseFan, poolHouseLight, poolLight];
             for (var i=0; i<backyardArray.length; i++) {
@@ -85,27 +89,27 @@
             const basementTitle = new Label("Basement", null, null, white).addTo(basement).pos(50, 50);
 
             const basementAllLights = lightBulb.clone().centerReg(basement).sca(0.15).expand();
-            const labelBAL = new Label("All Lights", null, null, white).centerReg(basement);
+            const label06 = new Label("All Lights", null, null, white).centerReg(basement);
             basementAllLights.id = "26239";
 
             const basementFrontLight = lightBulb.clone().centerReg(basement).sca(0.15).expand();
-            const labelBFL = new Label("Front Lights", null, null, white).centerReg(basement);
+            const label07 = new Label("Front Lights", null, null, white).centerReg(basement);
             basementFrontLight.id = "5 14 FF 1";
 
             const basementBackLight = lightBulb.clone().centerReg(basement).sca(0.15).expand();
-            const labelBBL = new Label("Back Lights", null, null, white).centerReg(basement);
+            const label08 = new Label("Back Lights", null, null, white).centerReg(basement);
             basementBackLight.id = "5 16 6F 1";
 
             const basementFrontAlcove = lightBulb.clone().centerReg(basement).sca(0.15).expand();
-            const labelBFA = new Label("Front Alcove", null, null, white).centerReg(basement);
+            const label09 = new Label("Front Alcove", null, null, white).centerReg(basement);
             basementFrontAlcove.id = "B A4 4E 1";
 
             const basementBackAlcove = lightBulb.clone().centerReg(basement).sca(0.15).expand();
-            const labelBBA = new Label("Back Alcove", null, null, white).centerReg(basement);
+            const label10 = new Label("Back Alcove", null, null, white).centerReg(basement);
             basementBackAlcove.id = "B A5 BA 1";
 
             const basementHallway = lightBulb.clone().centerReg(basement).sca(0.15).expand();
-            const labelBH = new Label("Hallway Light", null, null, white).centerReg(basement);
+            const label11 = new Label("Hallway Light", null, null, white).centerReg(basement);
             basementHallway.id = "63722";
 
             const basementArray = [basementAllLights, basementFrontLight, basementBackLight, basementFrontAlcove, basementBackAlcove, basementHallway];
@@ -122,10 +126,67 @@
                 });
             }
 
+            // DINING
+            const dining = new Container(stageW, stageH);
+            // const diningBack = new Rectangle(stageW, stageH, blue).addTo(dining);
+            const diningBack = frame.asset("dining.png").addTo(dining);
+            const diningTitle = new Label("Dining", null, null, white).addTo(dining).pos(50, 50);
+
+            const diningChandelier = chandelier.clone().centerReg(dining).sca(0.15).expand();
+            const label12 = new Label("Chandelier", null, null, white).centerReg(dining);
+            diningChandelier.id = "43 64 3E 1";
+
+            const diningStereo = stereo.clone().centerReg(dining).sca(0.15).expand();
+            const label13 = new Label("Stereo", null, null, white).centerReg(dining);
+            diningStereo.id = "38737";
+
+            const diningVolumeUp = volumeUp.clone().centerReg(dining).sca(0.15).expand();
+            diningVolumeUp.id = "59220";
+            const diningVolumeDown = volumeDown.clone().centerReg(dining).sca(0.15).expand();
+            diningVolumeDown.id = "28553";
+            const label14 = new Label("Volume", null, null, white).centerReg(dining);
+
+            const diningXmasLights = christmasLights.clone().centerReg(dining).sca(0.15).expand();
+            const label15 = new Label("Christmas Lights", null, null, white).centerReg(dining);
+            diningXmasLights.id = "55587";
+
+            const diningMiddleHallway = lightBulb.clone().centerReg(dining).sca(0.15).expand();
+            const label16 = new Label("Middle Hallway", null, null, white).centerReg(dining);
+            diningMiddleHallway.id = "30531";
+
+            const diningHallwayChandelier = chandelier.clone().centerReg(dining).sca(0.15).expand();
+            const label17 = new Label("Hallway Chandelier", null, null, white).centerReg(dining);
+            diningHallwayChandelier.id = "20049";
+
+            const diningArray = [diningChandelier, diningStereo, diningXmasLights, diningMiddleHallway, diningHallwayChandelier];
+            for (var i=0; i<diningArray.length; i++) {
+                diningArray[i].tap(function (e) {
+                    if (e.target.alpha == 1) {
+                        e.target.animate({props:{scale:0.25}, time:500, loop:true, loopCount:2, rewind:true});
+                        e.target.alpha = 0.25;
+                        stage.update();
+                    } else {
+                        e.target.alpha = 1;
+                        stage.update();
+                    }
+                });
+            }
+            
+            const volumeArray = [diningVolumeUp, diningVolumeDown];
+            for (var i=0; i<volumeArray.length; i++) {
+                volumeArray[i].tap(function (e) {
+                    if (e.target.alpha) {
+                        e.target.animate({props:{scale:0.25}, time:500, rewind:true});
+                        stage.update();
+                    }
+                });
+            }
+
             // PAGE CONTROL
             const pages = new Pages([
-                {page:backyard, swipe:[basement, basement]},
-                {page:basement, swipe:[backyard, backyard]}
+                {page:backyard, swipe:[dining, basement]},
+                {page:basement, swipe:[backyard, dining]},
+                {page:dining, swipe:[basement, backyard]}
             ], "slide").addTo();
 
             // RESPONSIVE
@@ -141,6 +202,7 @@
                 // zog(stageW, stageH);
                 backyardBack.scaleTo(stage, 100, 100, "both");
                 basementBack.scaleTo(stage, 100, 100, "both");
+                diningBack.scaleTo(stage, 100, 100, "both");
 
                 // BACKYARD
                 // placement of icons
@@ -151,11 +213,11 @@
                 poolLight.loc(stageW*marginX, stageH*(marginY+spacingY*4));
 
                 // placement and sizing of labels
-                labelYardLights.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*0));
-                labelPoolHouseFanLight.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*1));
-                labelPoolHouseFan.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*2));
-                labelPoolHouseLight.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*3));
-                labelPoolLight.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*4));
+                label01.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*0));
+                label02.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*1));
+                label03.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*2));
+                label04.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*3));
+                label05.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*4));
 
                 // scale the title to 25% the width
 	            // position title at 5% margin left and top
@@ -172,17 +234,40 @@
                 basementHallway.loc(stageW*marginX, stageH*(marginY+spacingY*5));
 
                 // placement and sizing of labels
-                labelBAL.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*0));
-                labelBFL.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*1));
-                labelBBL.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*2));
-                labelBFA.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*3));
-                labelBBA.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*4));
-                labelBH.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*5));
+                label06.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*0));
+                label07.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*1));
+                label08.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*2));
+                label09.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*3));
+                label10.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*4));
+                label11.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*5));
 
                 // scale the title to 25% the width
 				// position title at 5% margin left and top
                 basementTitle.scaleTo(stage, 25);
                 basementTitle.pos(stageW*.05, stageH*.05);
+
+                // DINING
+                // placement of icons
+                diningChandelier.loc(stageW*marginX, stageH*(marginY+spacingY*0));
+                diningStereo.loc(stageW*marginX, stageH*(marginY+spacingY*1));
+                diningVolumeUp.loc(stageW*(marginX+0.5), stageH*(marginY+spacingY*2));
+                diningVolumeDown.loc(stageW*marginX, stageH*(marginY+spacingY*2));
+                diningXmasLights.loc(stageW*marginX, stageH*(marginY+spacingY*3));
+                diningMiddleHallway.loc(stageW*marginX, stageH*(marginY+spacingY*4));
+                diningHallwayChandelier.loc(stageW*marginX, stageH*(marginY+spacingY*5));
+
+                // placement and sizing of labels
+                label12.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*0));
+                label13.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*1));
+                label14.sca(stageW/factor).loc(stageW*(marginX+0.25), stageH*(marginY+spacingY*2));
+                label15.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*3));
+                label16.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*4));
+                label17.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*5));
+
+                // scale the title to 25% the width
+				// position title at 5% margin left and top
+                diningTitle.scaleTo(stage, 25);
+                diningTitle.pos(stageW*.05, stageH*.05);
 
                 pages.resize();
                 stage.update();
