@@ -1,44 +1,200 @@
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
-<head>
-    <title>Basement</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    <script src="js/control.js"></script>
-</head>
-<body>
-    <div class="container">
-        <nav class="navbar navbar-default">
-            <div class="container-fluid">
-                <div class="navbar-header">
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="#">Home Web</a>
-                </div>
-                <div id="navbar" class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li class=""><a title="" class="" href="backyard.html">Backyard</a></li>
-                        <li class=""><a title="" class="" href="basement.html">Basement</a></li>
-                        <li class=""><a title="" class="" href="dining.html">Dining Room</a></li>
-                        <li class=""><a title="" class="" href="family.html">Family Room</a></li>
-                        <li class=""><a title="" class="" href="office.html">Office</a></li>
-                    </ul>
-                </div>
-            </div>
-        </nav>
-        <h1>Backyard</h1>
-        <p><button id="48003" type="button" class="btn-automation">Backyard Landscape Lights</button></p>
-        <p><button id="05 15 92 1" type="button" class="btn-automation">Pool House Fan Lights</button></p>
-        <p><button id="4090" type="button" class="btn-automation">Pool House Fan</button></p>
-        <p><button id="05 15 D7 1" type="button" class="btn-automation">Pool House Post Lights</button></p>
-        <p><button id="10063" type="button" class="btn-automation">Pool Lights</button></p>
-    </div>
-</body>
+    <head>
+        <meta charset="utf-8">
+        <title>Smart Home</title>
+        <script src="./js/createjs_1.1_min.js"></script>
+        <script src="./js/zim_10.js"></script>
+        <script>
+
+        const color = light;
+        const outerColor = dark;
+        const assets = ["christmas-lights.png", "fan.png", "light-bulb.png", "pool.png", "backyard.png", "basement.png"];
+        const path = "assets/";
+
+        // ZIM way of doing CSS styling
+        // STYLE = {
+        //     type: {
+        //         Label: {
+        //             centerReg: true,
+        //             valign: "center",
+        //             outline: true
+        //         }
+        //     }
+        // }
+
+        const frame = new Frame({color, outerColor, assets, path});
+        frame.on("ready", () => {
+            zog("Ready from ZIM Frame");
+
+            const stage = frame.stage;
+            let stageW = frame.width;
+            let stageH = frame.height;
+
+            // Put your code here:
+
+            // ASSETS
+            const christmasLights = frame.asset("christmas-lights.png");
+            const lightBulb = frame.asset("light-bulb.png");
+            const fan = frame.asset("fan.png");
+
+            // BACKYARD
+            const backyard = new Container(stageW, stageH);
+            // const backyardBack = new Rectangle(stageW, stageH, green).addTo(backyard);
+            const backyardBack = frame.asset("backyard.png").addTo(backyard);
+            const backyardTitle = new Label("Backyard", null, null, white).addTo(backyard).pos(50, 50);
+
+            const yardLights = christmasLights.clone().centerReg(backyard).sca(0.15).expand();
+            yardLights.id = "48003";
+            const labelYardLights = new Label("Yard Lights", null, null, white).centerReg(backyard);
+
+            const poolHouseFanLight = lightBulb.clone().centerReg(backyard).sca(0.15).expand();
+            poolHouseFanLight.id = "05 15 92 1";
+            const labelPoolHouseFanLight = new Label("Fan Light", null, null, white).centerReg(backyard);
+
+            const poolHouseFan = fan.clone().centerReg(backyard).sca(0.15).expand();
+            poolHouseFan.id = "4090";
+            const labelPoolHouseFan = new Label("Fan", null, null, white).centerReg(backyard);
+
+            const poolHouseLight = lightBulb.clone().centerReg(backyard).sca(0.15).expand();
+            poolHouseLight.id = "05 15 D7 1";
+            const labelPoolHouseLight = new Label("Pool House Lights", null, null, white).centerReg(backyard);
+
+            const poolLight = frame.asset("pool.png").centerReg(backyard).sca(0.15).expand();
+            poolLight.id = "10063";
+            const labelPoolLight = new Label("Pool Lights", null, null, white).centerReg(backyard);
+
+            const backyardArray = [yardLights, poolHouseFanLight, poolHouseFan, poolHouseLight, poolLight];
+            for (var i=0; i<backyardArray.length; i++) {
+                backyardArray[i].tap(function (e) {
+                    if (e.target.alpha == 1) {
+                        e.target.alpha = 0.25;
+                        stage.update();
+                    } else {
+                        e.target.alpha = 1;
+                        stage.update();
+                    }
+                });
+            }
+
+            // BASEMENT
+            const basement = new Container(stageW, stageH);
+            // const basementBack = new Rectangle(stageW, stageH, blue).addTo(basement);
+            const basementBack = frame.asset("basement.png").addTo(basement);
+            const basementTitle = new Label("Basement", null, null, white).addTo(basement).pos(50, 50);
+
+            const basementAllLights = lightBulb.clone().centerReg(basement).sca(0.15).expand();
+            const labelBAL = new Label("All Lights", null, null, white).centerReg(basement);
+            basementAllLights.id = "26239";
+
+            const basementFrontLight = lightBulb.clone().centerReg(basement).sca(0.15).expand();
+            const labelBFL = new Label("Front Lights", null, null, white).centerReg(basement);
+            basementFrontLight.id = "5 14 FF 1";
+
+            const basementBackLight = lightBulb.clone().centerReg(basement).sca(0.15).expand();
+            const labelBBL = new Label("Back Lights", null, null, white).centerReg(basement);
+            basementBackLight.id = "5 16 6F 1";
+
+            const basementFrontAlcove = lightBulb.clone().centerReg(basement).sca(0.15).expand();
+            const labelBFA = new Label("Front Alcove", null, null, white).centerReg(basement);
+            basementFrontAlcove.id = "B A4 4E 1";
+
+            const basementBackAlcove = lightBulb.clone().centerReg(basement).sca(0.15).expand();
+            const labelBBA = new Label("Back Alcove", null, null, white).centerReg(basement);
+            basementBackAlcove.id = "B A5 BA 1";
+
+            const basementHallway = lightBulb.clone().centerReg(basement).sca(0.15).expand();
+            const labelBH = new Label("Hallway Light", null, null, white).centerReg(basement);
+            basementHallway.id = "63722";
+
+            const basementArray = [basementAllLights, basementFrontLight, basementBackLight, basementFrontAlcove, basementBackAlcove, basementHallway];
+            for (var i=0; i<basementArray.length; i++) {
+                basementArray[i].tap(function (e) {
+                    if (e.target.alpha == 1) {
+                        e.target.alpha = 0.25;
+                        stage.update();
+                    } else {
+                        e.target.alpha = 1;
+                        stage.update();
+                    }
+                });
+            }
+
+            // PAGE CONTROL
+            const pages = new Pages([
+                {page:backyard, swipe:[basement, basement]},
+                {page:basement, swipe:[backyard, backyard]}
+            ], "slide").addTo();
+
+            // RESPONSIVE
+            const factor = 800;
+            const marginX = 0.25;
+            const spacingX = 0.3;
+            const marginY = 0.25;
+            const spacingY = 0.13;
+
+            frame.on("resize", () => {
+                stageW = frame.width;
+                stageH = frame.height;
+                // zog(stageW, stageH);
+                backyardBack.scaleTo(stage, 100, 100, "both");
+                basementBack.scaleTo(stage, 100, 100, "both");
+
+                // BACKYARD
+                // placement of icons
+                yardLights.loc(stageW*marginX, stageH*(marginY+spacingY*0));
+                poolHouseFanLight.loc(stageW*marginX, stageH*(marginY+spacingY*1));
+                poolHouseFan.loc(stageW*marginX, stageH*(marginY+spacingY*2));
+                poolHouseLight.loc(stageW*marginX, stageH*(marginY+spacingY*3));
+                poolLight.loc(stageW*marginX, stageH*(marginY+spacingY*4));
+
+                // placement and sizing of labels
+                labelYardLights.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*0));
+                labelPoolHouseFanLight.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*1));
+                labelPoolHouseFan.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*2));
+                labelPoolHouseLight.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*3));
+                labelPoolLight.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*4));
+
+                // scale the title to 25% the width
+	            // position title at 5% margin left and top
+                backyardTitle.scaleTo(stage, 25);
+                backyardTitle.pos(stageW*.05, stageH*.05);
+
+                // BASEMENT
+                // placement of icons
+                basementAllLights.loc(stageW*marginX, stageH*(marginY+spacingY*0));
+                basementFrontLight.loc(stageW*marginX, stageH*(marginY+spacingY*1));
+                basementBackLight.loc(stageW*marginX, stageH*(marginY+spacingY*2));
+                basementFrontAlcove.loc(stageW*marginX, stageH*(marginY+spacingY*3));
+                basementBackAlcove.loc(stageW*marginX, stageH*(marginY+spacingY*4));
+                basementHallway.loc(stageW*marginX, stageH*(marginY+spacingY*5));
+
+                // placement and sizing of labels
+                labelBAL.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*0));
+                labelBFL.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*1));
+                labelBBL.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*2));
+                labelBFA.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*3));
+                labelBBA.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*4));
+                labelBH.sca(stageW/factor).loc(stageW*(marginX+spacingX), stageH*(marginY+spacingY*5));
+
+                // scale the title to 25% the width
+				// position title at 5% margin left and top
+                basementTitle.scaleTo(stage, 25);
+                basementTitle.pos(stageW*.05, stageH*.05);
+
+                pages.resize();
+                stage.update();
+            });
+
+            stage.update();
+
+        });
+
+        </script>
+
+        <meta name="viewport" content="width=device-width, user-scalable=no" />
+    </head>
+    <body>
+
+    </body>
 </html>
